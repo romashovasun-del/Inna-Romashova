@@ -6,18 +6,19 @@
 <title>Inna Romashova — Brand &amp; Web Designer Portfolio</title>
 <meta name="description" content="Portfolio of Inna Romashova, a brand and web designer: brand identity, landing pages, Webflow sites and print design for clients in Europe and beyond.">
 <meta name="theme-color" content="#DCD8CF">
-<link rel="canonical" href="https://i-romashova-design.vercel.app/">
+<!-- TODO: replace https://YOUR-DOMAIN.com/ with the real https:// address of the site (canonical, og:url) -->
+<link rel="canonical" href="https://YOUR-DOMAIN.com/">
 
 <!-- Open Graph (Telegram, Facebook, LinkedIn, Instagram DMs) -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Inna Romashova">
 <meta property="og:title" content="Inna Romashova — Brand &amp; Web Designer Portfolio">
 <meta property="og:description" content="Portfolio of Inna Romashova, a brand and web designer: brand identity, landing pages, Webflow sites and print design for clients in Europe and beyond.">
-<meta property="og:url" content="https://i-romashova-design.vercel.app/">
+<meta property="og:url" content="https://YOUR-DOMAIN.com/">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="uk_UA">
 <!-- TODO: upload a 1200x630 px JPG/PNG preview image to the site root and make sure this https:// URL opens it -->
-<meta property="og:image" content="https://i-romashova-design.vercel.app/og-image-v2.jpg">
+<meta property="og:image" content="https://YOUR-DOMAIN.com/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Inna Romashova — brand and web designer portfolio">
@@ -26,7 +27,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Inna Romashova — Brand &amp; Web Designer Portfolio">
 <meta name="twitter:description" content="Portfolio of Inna Romashova, a brand and web designer: brand identity, landing pages, Webflow sites and print design for clients in Europe and beyond.">
-<meta name="twitter:image" content="https://i-romashova-design.vercel.app/og-image-v2.jpg">
+<meta name="twitter:image" content="https://YOUR-DOMAIN.com/og-image.jpg">
 
 <!-- Icons (favicon.svg, favicon-32.png, apple-touch-icon.png are included next to index.html) -->
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -100,8 +101,9 @@ section{padding-block:96px}
 /* Hero */
 .hero{padding-block:120px 96px;text-align:center}
 .hero .role{font-size:clamp(28px,4.5vw,48px);font-weight:600;letter-spacing:-.035em;margin-top:6px;background:linear-gradient(90deg,var(--fg),var(--accent-fill));-webkit-background-clip:text;background-clip:text;color:transparent}
-.facts{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:28px auto 0;padding:0;list-style:none;max-width:760px}
-.facts li{font-size:14px;color:var(--muted);border:1px solid var(--line);border-radius:980px;padding:6px 14px}
+.facts{display:flex;flex-wrap:wrap;justify-content:center;gap:2px 0;margin:28px auto 0;padding:0;list-style:none;max-width:760px}
+.facts li{font-size:15px;color:var(--muted)}
+.facts li:not(:last-child)::after{content:"·";margin-inline:.6em;opacity:.6}
 .hero .lead{max-width:640px;margin:28px auto 0}
 .btn-row{display:flex;gap:24px;justify-content:center;align-items:center;margin-top:36px;flex-wrap:wrap}
 .btn{display:inline-block;background:var(--accent-fill);color:var(--on-accent);font-size:17px;padding:12px 24px;border-radius:980px;border:0;cursor:pointer;font-family:inherit}
@@ -120,9 +122,10 @@ section{padding-block:96px}
 .tile.wide{grid-column:1/-1}
 .tile .meta{padding:22px 26px 26px;display:grid;gap:6px}
 .tile h3{font-size:24px;letter-spacing:-.025em;line-height:1.15}
-.tags{display:flex;flex-wrap:wrap;gap:8px;font-size:13px;color:var(--muted);list-style:none;margin:0;padding:0}
-.tags li{padding:5px 12px;border:1px solid var(--line);border-radius:980px;line-height:1.3;white-space:nowrap}
-.tile .tags{margin-top:8px}
+.tags{display:flex;flex-wrap:wrap;gap:2px 0;font-size:14px;color:var(--muted);list-style:none;margin:0;padding:0}
+.tags li{line-height:1.4;white-space:nowrap}
+.tags li:not(:last-child)::after{content:"·";margin-inline:.55em;opacity:.6}
+.tile .tags{margin-top:6px}
 .band .tile{background:var(--tile)}
 
 /* Brand covers (placeholders until real images are added) */
@@ -206,8 +209,7 @@ section{padding-block:96px}
 
 /* Case page */
 .case-hero{text-align:center;padding-block:88px 40px}
-.case-hero .tags{justify-content:center;margin-top:20px;font-size:14px}
-.case-hero .tags li{padding:7px 16px}
+.case-hero .tags{justify-content:center;margin-top:20px;font-size:15px}
 .case-cover{border-radius:var(--r-lg);overflow:hidden}
 .case-cover .cover{aspect-ratio:16/8}
 .overview{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:48px;padding-top:28px;border-top:1px solid var(--line)}
@@ -243,8 +245,12 @@ section{padding-block:96px}
 .about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:56px;align-items:start;margin-top:56px}
 .portrait{aspect-ratio:4/5;border-radius:var(--r-lg);background:var(--band);display:grid;place-items:center;color:var(--muted);font-size:14px;border:1px dashed var(--line)}
 .about-text{display:grid;gap:20px;font-size:19px;line-height:1.5}
-.pills{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:16px 0 0}
-.pills li{font-size:14px;padding:7px 14px;border-radius:980px;background:var(--tile);border:1px solid var(--line)}
+.skills{margin-top:28px}
+.skills .card{padding:28px;gap:10px}
+.skills .card h3{font-size:22px}
+.skills .card p{font-size:16px;line-height:1.5;color:var(--muted)}
+.langs{margin-top:28px;font-size:17px}
+.langs b{font-weight:600;margin-right:.4em}
 .kv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px}
 .exp{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:12px;font-size:17px}
 .job{display:grid;gap:4px}
@@ -321,7 +327,6 @@ footer{border-top:1px solid var(--line);padding-block:24px;font-size:12px;color:
       <li data-i18n="k5">7+ years in design</li>
       <li data-i18n="k5b">Graphic design</li>
       <li data-i18n="k6">Webflow &amp; vibe-coded websites</li>
-      <li>EN / UA / RU</li>
     </ul>
     <p class="lead" data-i18n="k7">I design brands and build the websites that carry them — so your business looks as good as it works.</p>
     <div class="btn-row"><a class="btn" href="#selected" data-scroll data-i18n="k8">View work</a></div>
@@ -432,26 +437,19 @@ footer{border-top:1px solid var(--line);padding-block:24px;font-size:12px;color:
       <div class="about-text">
         <p data-i18n="k45">I’m Inna, a brand and web designer with 7+ years of experience. I started in graphic design — logos, packaging, print — and moved into web because clients kept asking for both. Now most of my projects run from identity to a live site.</p>
         <p data-i18n="k46">I’ve designed visual identities, marketing materials and digital products for healthcare, MedTech, e-learning, and natural beauty and home care brands — including Helsi, Choice, Lexus and Ukraine’s 30th Independence Anniversary — and delivered work for clients from the UK and Switzerland.</p>
-        <p data-i18n="k47">I work in English, Ukrainian and Russian with clients in Europe and beyond.</p>
       </div>
     </div>
   </section>
   <section class="band">
-    <div class="wrap kv">
-      <div>
-        <h2 class="h-md" data-i18n="k48">Skills</h2>
-        <ul class="pills">
-          <li data-i18n="k49">Brand identity</li><li data-i18n="k49b">Graphic design</li><li data-i18n="k50">Logo design</li><li data-i18n="k51">Landing page design</li><li data-i18n="k52">Website design</li><li data-i18n="k53">Webflow development</li><li data-i18n="k54">Vibe-coding</li><li data-i18n="k55">Print &amp; packaging</li><li data-i18n="k56">UI/UX design</li><li data-i18n="k57">Social media design</li><li data-i18n="k58">Presentation design</li><li data-i18n="k59">Video editing</li>
-        </ul>
-        <h2 class="h-md" style="margin-top:40px" data-i18n="k60">Languages</h2>
-        <ul class="pills"><li data-i18n="k61">English</li><li data-i18n="k62">Ukrainian</li><li data-i18n="k63">Russian</li></ul>
+    <div class="wrap">
+      <h2 class="h-md" data-i18n="k48">Skills</h2>
+      <div class="grid2 skills">
+        <article class="card"><h3 data-i18n="c1">Brand &amp; print</h3><p data-i18n="c2">Brand identity, graphic design, logo design, print &amp; packaging, presentation design</p></article>
+        <article class="card"><h3 data-i18n="c3">Web</h3><p data-i18n="c4">Landing page design, website design, UI/UX design, Webflow development, vibe-coding</p></article>
+        <article class="card"><h3 data-i18n="c5">Social &amp; video</h3><p data-i18n="c6">Social media design, video editing</p></article>
+        <article class="card"><h3 data-i18n="k64">Tools</h3><p>Figma, Adobe Illustrator, Adobe Photoshop, Adobe InDesign, Adobe Premiere Pro, Webflow, Sketch, Axure, Claude, ChatGPT, Slack</p></article>
       </div>
-      <div>
-        <h2 class="h-md" data-i18n="k64">Tools</h2>
-        <ul class="pills">
-          <li>Figma</li><li>Adobe Illustrator</li><li>Adobe Photoshop</li><li>Adobe InDesign</li><li>Adobe Premiere Pro</li><li>Webflow</li><li>Sketch</li><li>Axure</li><li>Claude</li><li>ChatGPT</li><li>Slack</li>
-        </ul>
-      </div>
+      <p class="langs"><b data-i18n="k60">Languages</b> <span data-i18n="c7">English, Ukrainian, Russian</span></p>
     </div>
   </section>
   <section>
@@ -1174,7 +1172,7 @@ const UI_UK = {
   work:'Роботи', about:'Про мене', site:'Інна Ромашова — портфоліо'
 };
 const SMALL_UK = {'Print & Packaging':'Поліграфія та пакування','Logo':'Логотип','Landing page':'Лендинг','Event materials':'Матеріали для подій','[Project name]':'[Назва проєкту]','[Year]':'[Рік]'};
-const STATIC_UK = {"k0": "Інна", "k1": "Роботи", "k2": "Про мене", "k3": "Інна Ромашова.", "k4": "Бренд- і веб-дизайнерка", "k5b": "Графічний дизайн", "k49b": "Графічний дизайн", "k5": "7+ років у дизайні", "k6": "Сайти на Webflow і вайбкодинг", "k7": "Створюю бренди й сайти, які їх несуть, — щоб ваш бізнес виглядав так само добре, як працює.", "k8": "Дивитися роботи", "k9": "Вибрані роботи", "k10": "Усі проєкти", "k11": "Що я роблю", "k12": "Логотип і айдентика", "k13": "Візуальна система, з якою ваш бізнес може рости.", "k14": "<b>Що входить:</b> логотип, палітра, типографіка, брендбук, шаблони для соцмереж.", "k15": "Дизайн лендингу", "k16": "Одна сторінка з однією чіткою метою — від першого вайрфрейму до готового сайту.", "k17": "<b>Що входить:</b> структура й план текстів, вайрфрейм, фінальний дизайн у Figma, мобільна версія. За бажанням — розробка під ключ у Webflow або вайбкодингом.", "k18": "Розробка сайту", "k19": "Від дизайну до запуску — або одразу верстка, якщо макет уже є.", "k20": "<b>Що входить:</b> дизайн сайту або верстка з вашого Figma-файлу, адаптивність, анімації, налаштування CMS, супровід запуску. У Webflow або вайбкодингом.", "k21": "Поліграфія та пакування", "k22": "Пакування й поліграфія в одному стилі з брендом — від етикеток до матеріалів для подій.", "k23": "<b>Що входить:</b> пакування та етикетки, розгортки, брошури, меню й флаєри, файли до друку.", "k24": "Як я працюю", "k25": "Бриф", "k26": "Визначаємо мету, аудиторію та обсяг робіт. Ви отримуєте зрозумілий план і терміни ще до початку дизайну.", "k27": "Концепція", "k28": "Я досліджую напрями й показую один-два, що відповідають брифу, з поясненням — а не купу варіантів.", "k29": "Дизайн", "k30": "Разом доопрацьовуємо обраний напрям, зазвичай за два раунди правок.", "k31": "Розробка і запуск", "k32": "Я верстаю сайт (або готую файли до друку), тестую його і передаю все, що вам потрібно.", "k33": "Що кажуть клієнти", "k34": "«Вона створила весь дизайн для нашого літнього фестивалю. Увага до деталей була помітна в кожній частині проєкту, вона дотримувалася всіх дедлайнів і чітко комунікувала на кожному етапі.»", "k35": "<b>Оля Синицька</b>Відеомонтажерка", "k36": "«Працювати з нею було задоволенням. Я ціную її професіоналізм і рекомендую її всім, хто шукає професійні дизайн-рішення.»", "k37": "<b>Оксана Морова</b>Спеціалістка з growth- і digital-маркетингу", "k38": "Понад 7 років я створюю бренди, поліграфію та сайти — часто в межах одного проєкту. Тепер я поєдную обидва напрями: розробляю айдентику і верстаю сайт, який її несе.", "k39": "Більше про мене", "k40": "Вибрані проєкти: айдентика, веб-дизайн і поліграфія. Відфільтруйте за типом або перегляньте все.", "k41": "Усі", "k42": "Веб", "k43": "Бренд і айдентика", "k44": "Ваше фото", "k45": "Я Інна, бренд- і веб-дизайнерка з досвідом понад 7 років. Починала з графічного дизайну — логотипи, пакування, поліграфія — і перейшла у веб, бо клієнти постійно просили і те, й інше. Тепер більшість моїх проєктів проходять шлях від айдентики до готового сайту.", "k46": "Я створювала айдентику, маркетингові матеріали та цифрові продукти для медицини, MedTech, онлайн-освіти, брендів натуральної косметики й засобів для дому — зокрема для Helsi, Choice, Lexus і 30-річчя Незалежності України — та працювала з клієнтами з Великої Британії та Швейцарії.", "k47": "Працюю українською, англійською та російською з клієнтами в Європі й за її межами.", "k48": "Навички", "k49": "Айдентика", "k50": "Дизайн логотипів", "k51": "Дизайн лендингів", "k52": "Дизайн сайтів", "k53": "Розробка на Webflow", "k54": "Вайбкодинг", "k55": "Поліграфія та пакування", "k56": "UI/UX-дизайн", "k57": "Дизайн для соцмереж", "k58": "Дизайн презентацій", "k59": "Відеомонтаж", "k60": "Мови", "k61": "Англійська", "k62": "Українська", "k63": "Російська", "k64": "Інструменти", "k65": "Досвід", "k66": "Освіта", "k67": "2024 — дотепер", "k68": "Бренд- і веб-дизайнерка на фрилансі", "k69": "Віддалено", "k70": "Айдентика, пакування, поліграфія та сайти для малого бізнесу і стартапів.", "k71": "Веб-дизайнерка та UI/UX", "k72": "ImproveIT Solutions · Віддалено", "k73": "Аутсорс для хайтек-компаній і стартапів. У невеликій команді створила прототип продукту, який клієнт прийняв, — це привело до контракту на розробку всього застосунку. Також поліграфія, соцмережі та відеопрезентація компанії.", "k74": "Графічна та веб-дизайнерка", "k75": "Choice · Київ", "k76": "Український виробник натуральних екологічних брендів для здоров’я, краси та догляду за домом. Створила лендинг для онлайн-марафону, який привів нових клієнтів і збільшив продажі. Пакування, каталоги, листівки, флаєри, сайти на конструкторах та ідеї для фотозйомок продукції.", "k77": "Elba · Віддалено", "k78": "Агенція онлайн-освіти. Розробила навчальний продукт від початку до кінця — щоденники, чек-листи, банери — і створювала сайти на конструкторах.", "k79": "Графічна дизайнерка та UI/UX", "k80": "Helsi · Київ", "k81": "Електронна медична система для пацієнтів, лікарів і клінік. Створила лендинг для онлайн-запису до лікаря, який працює досі. Дизайн інтерфейсів на основі поведінки користувачів (Sketch, Figma), клікабельні прототипи в Axure, поліграфія та соцмережі.", "k82": "Комп’ютерна графіка та дизайн", "k83": "Комп’ютерна академія IT STEP", "k84": "Бакалавр, ресторанна справа", "k85": "Київський національний торговельно-економічний університет", "k86": "Готельне господарство", "k87": "Київський коледж готельного господарства", "k88": "Відкрита до нових проєктів і повної зайнятості.", "k89": "© 2026 Інна Ромашова · Бренд- і веб-дизайнерка", "k90": "Цей сайт зроблено вайбкодингом — дизайн у Figma, код за допомогою ШІ.", "k91": "Зображення", "k92": "Закрити"};
+const STATIC_UK = {"k0": "Інна", "k1": "Роботи", "k2": "Про мене", "k3": "Інна Ромашова.", "k4": "Бренд- і веб-дизайнерка", "k5": "7+ років у дизайні", "k6": "Сайти на Webflow і вайбкодинг", "k7": "Створюю бренди й сайти, які їх несуть, — щоб ваш бізнес виглядав так само добре, як працює.", "k8": "Дивитися роботи", "k9": "Вибрані роботи", "k10": "Усі проєкти", "k11": "Що я роблю", "k12": "Логотип і айдентика", "k13": "Візуальна система, з якою ваш бізнес може рости.", "k14": "<b>Що входить:</b> логотип, палітра, типографіка, брендбук, шаблони для соцмереж.", "k15": "Дизайн лендингу", "k16": "Одна сторінка з однією чіткою метою — від першого вайрфрейму до готового сайту.", "k17": "<b>Що входить:</b> структура й план текстів, вайрфрейм, фінальний дизайн у Figma, мобільна версія. За бажанням — розробка під ключ у Webflow або вайбкодингом.", "k18": "Розробка сайту", "k19": "Від дизайну до запуску — або одразу верстка, якщо макет уже є.", "k20": "<b>Що входить:</b> дизайн сайту або верстка з вашого Figma-файлу, адаптивність, анімації, налаштування CMS, супровід запуску. У Webflow або вайбкодингом.", "k21": "Поліграфія та пакування", "k22": "Пакування й поліграфія в одному стилі з брендом — від етикеток до матеріалів для подій.", "k23": "<b>Що входить:</b> пакування та етикетки, розгортки, брошури, меню й флаєри, файли до друку.", "k24": "Як я працюю", "k25": "Бриф", "k26": "Визначаємо мету, аудиторію та обсяг робіт. Ви отримуєте зрозумілий план і терміни ще до початку дизайну.", "k27": "Концепція", "k28": "Я досліджую напрями й показую один-два, що відповідають брифу, з поясненням — а не купу варіантів.", "k29": "Дизайн", "k30": "Разом доопрацьовуємо обраний напрям, зазвичай за два раунди правок.", "k31": "Розробка і запуск", "k32": "Я верстаю сайт (або готую файли до друку), тестую його і передаю все, що вам потрібно.", "k33": "Що кажуть клієнти", "k34": "«Вона створила весь дизайн для нашого літнього фестивалю. Увага до деталей була помітна в кожній частині проєкту, вона дотримувалася всіх дедлайнів і чітко комунікувала на кожному етапі.»", "k35": "<b>Оля Синицька</b>Відеомонтажерка", "k36": "«Працювати з нею було задоволенням. Я ціную її професіоналізм і рекомендую її всім, хто шукає професійні дизайн-рішення.»", "k37": "<b>Оксана Морова</b>Спеціалістка з growth- і digital-маркетингу", "k38": "Понад 7 років я створюю бренди, поліграфію та сайти — часто в межах одного проєкту. Тепер я поєдную обидва напрями: розробляю айдентику і верстаю сайт, який її несе.", "k39": "Більше про мене", "k40": "Вибрані проєкти: айдентика, веб-дизайн і поліграфія. Відфільтруйте за типом або перегляньте все.", "k41": "Усі", "k42": "Веб", "k43": "Бренд і айдентика", "k44": "Ваше фото", "k45": "Я Інна, бренд- і веб-дизайнерка з досвідом понад 7 років. Починала з графічного дизайну — логотипи, пакування, поліграфія — і перейшла у веб, бо клієнти постійно просили і те, й інше. Тепер більшість моїх проєктів проходять шлях від айдентики до готового сайту.", "k46": "Я створювала айдентику, маркетингові матеріали та цифрові продукти для медицини, MedTech, онлайн-освіти, брендів натуральної косметики й засобів для дому — зокрема для Helsi, Choice, Lexus і 30-річчя Незалежності України — та працювала з клієнтами з Великої Британії та Швейцарії.", "k47": "Працюю українською, англійською та російською з клієнтами в Європі й за її межами.", "k48": "Навички", "k49": "Айдентика", "k50": "Дизайн логотипів", "k51": "Дизайн лендингів", "k52": "Дизайн сайтів", "k53": "Розробка на Webflow", "k54": "Вайбкодинг", "k55": "Поліграфія та пакування", "k56": "UI/UX-дизайн", "k57": "Дизайн для соцмереж", "k58": "Дизайн презентацій", "k59": "Відеомонтаж", "k60": "Мови", "k61": "Англійська", "k62": "Українська", "k63": "Російська", "k64": "Інструменти", "k65": "Досвід", "k66": "Освіта", "k67": "2024 — дотепер", "k68": "Бренд- і веб-дизайнерка на фрилансі", "k69": "Віддалено", "k70": "Айдентика, пакування, поліграфія та сайти для малого бізнесу і стартапів.", "k71": "Веб-дизайнерка та UI/UX", "k72": "ImproveIT Solutions · Віддалено", "k73": "Аутсорс для хайтек-компаній і стартапів. У невеликій команді створила прототип продукту, який клієнт прийняв, — це привело до контракту на розробку всього застосунку. Також поліграфія, соцмережі та відеопрезентація компанії.", "k74": "Графічна та веб-дизайнерка", "k75": "Choice · Київ", "k76": "Український виробник натуральних екологічних брендів для здоров’я, краси та догляду за домом. Створила лендинг для онлайн-марафону, який привів нових клієнтів і збільшив продажі. Пакування, каталоги, листівки, флаєри, сайти на конструкторах та ідеї для фотозйомок продукції.", "k77": "Elba · Віддалено", "k78": "Агенція онлайн-освіти. Розробила навчальний продукт від початку до кінця — щоденники, чек-листи, банери — і створювала сайти на конструкторах.", "k79": "Графічна дизайнерка та UI/UX", "k80": "Helsi · Київ", "k81": "Електронна медична система для пацієнтів, лікарів і клінік. Створила лендинг для онлайн-запису до лікаря, який працює досі. Дизайн інтерфейсів на основі поведінки користувачів (Sketch, Figma), клікабельні прототипи в Axure, поліграфія та соцмережі.", "k82": "Комп’ютерна графіка та дизайн", "k83": "Комп’ютерна академія IT STEP", "k84": "Бакалавр, ресторанна справа", "k85": "Київський національний торговельно-економічний університет", "k86": "Готельне господарство", "k87": "Київський коледж готельного господарства", "k88": "Відкрита до нових проєктів і повної зайнятості.", "k89": "© 2026 Інна Ромашова · Бренд- і веб-дизайнерка", "k90": "Цей сайт зроблено вайбкодингом — дизайн у Figma, код за допомогою ШІ.", "k91": "Зображення", "k92": "Закрити", "c1": "Бренд і поліграфія", "c2": "Айдентика, графічний дизайн, дизайн логотипів, поліграфія та пакування, дизайн презентацій", "c3": "Веб", "c4": "Дизайн лендингів, дизайн сайтів, UI/UX-дизайн, розробка на Webflow, вайбкодинг", "c5": "Соцмережі та відео", "c6": "Дизайн для соцмереж, відеомонтаж", "c7": "Англійська, українська, російська"};
 
 let LANG='en';
 try{ const q=new URLSearchParams(location.search).get('lang'); LANG = q==='uk'||q==='ua' ? 'uk' : (localStorage.getItem('lang')==='uk'?'uk':'en'); }catch(e){}
