@@ -109,16 +109,24 @@ section{padding-block:96px}
 .btn{display:inline-block;background:var(--accent-fill);color:var(--on-accent);font-size:17px;padding:12px 24px;border-radius:980px;border:0;cursor:pointer;font-family:inherit}
 .btn:hover{text-decoration:none;filter:brightness(1.08)}
 .link-more::after{content:" ›"}
-@media (prefers-reduced-motion:no-preference){
-  .hero>*{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
-  .hero>*:nth-child(2){animation-delay:.08s}.hero>*:nth-child(3){animation-delay:.16s}.hero>*:nth-child(4){animation-delay:.24s}.hero>*:nth-child(5){animation-delay:.32s}
-  @keyframes rise{from{transform:translateY(14px)}to{transform:none}}
-}
+/* Fade-up on scroll: opacity 0→1 + translateY 20px→0, 0.7s ease; class "in" is added by IntersectionObserver */
+.fade-up{opacity:0}
+.fade-up.in{animation:fadeUp .7s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.hero>.fade-up:nth-child(2).in{animation-delay:.1s}
+.hero>.fade-up:nth-child(3).in{animation-delay:.2s}
+.hero>.fade-up:nth-child(4).in{animation-delay:.3s}
+.hero>.fade-up:nth-child(5).in{animation-delay:.4s}
+.stagger>.fade-up:nth-child(2).in{animation-delay:.08s}
+.stagger>.fade-up:nth-child(3).in{animation-delay:.16s}
+.stagger>.fade-up:nth-child(4).in{animation-delay:.24s}
+.fade-up.skip{opacity:1;animation:none}
+@media (prefers-reduced-motion:reduce),(scripting:none){.fade-up{opacity:1}.fade-up.in{animation:none}}
 
 /* Case tiles */
 .tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-.tile{display:block;border-radius:var(--r-lg);overflow:hidden;background:var(--tile);color:var(--fg);transition:transform .4s cubic-bezier(.2,.7,.2,1)}
-.tile:hover{text-decoration:none;transform:scale(1.012)}
+.tile{display:block;border-radius:var(--r-lg);overflow:hidden;background:var(--tile);color:var(--fg)}
+.tile:hover{text-decoration:none}
 .tile.wide{grid-column:1/-1}
 .tile .meta{padding:22px 26px 26px;display:grid;gap:6px}
 .tile h3{font-size:24px;letter-spacing:-.025em;line-height:1.15}
@@ -166,6 +174,9 @@ section{padding-block:96px}
 .cover.speakup .w{font-weight:800;font-size:clamp(40px,6.5vw,76px);letter-spacing:-.05em;color:#1E1E1E;line-height:1}
 .cover.speakup .w b{color:#F5166B;font-weight:800}
 .cover.speakup .s{font-size:11px;letter-spacing:.4em;text-indent:.4em;opacity:.6;margin-top:12px;text-align:center}
+.cover .photo,.cover>div{transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.tile:hover .cover .photo,.tile:hover .cover>div{transform:scale(1.04)}
+.tile:hover .photo[data-fade]{transform:translateX(-50%) scale(1.04)}
 .cover .ph{position:absolute;right:14px;bottom:12px;font-size:11px;letter-spacing:0;background:rgba(0,0,0,.35);color:#fff;padding:3px 8px;border-radius:980px}
 
 /* Services */
@@ -292,7 +303,7 @@ footer{border-top:1px solid var(--line);padding-block:24px;font-size:12px;color:
   .nav ul{gap:20px}
   .exp li{grid-template-columns:minmax(0,1fr);gap:2px}
 }
-@media (prefers-reduced-motion:reduce){.tile{transition:none}.tile:hover{transform:none}}
+@media (prefers-reduced-motion:reduce){.cover .photo,.cover>div{transition:none}.tile:hover .cover .photo,.tile:hover .cover>div{transform:none}.tile:hover .photo[data-fade]{transform:translateX(-50%)}}
 .nav .lang{display:flex;gap:2px;align-items:center}
 .nav .lang button{font:inherit;font-size:13px;background:none;border:0;padding:4px 6px;border-radius:6px;color:var(--fg);opacity:.55;cursor:pointer}
 .nav .lang button[aria-pressed="true"]{opacity:1;font-weight:600;background:var(--tile)}
@@ -312,7 +323,7 @@ footer{border-top:1px solid var(--line);padding-block:24px;font-size:12px;color:
     <nav aria-label="Main"><ul>
       <li><a href="#work" data-nav="work" data-i18n="k1">Work</a></li>
       <li><a href="#about" data-nav="about" data-i18n="k2">About</a></li>
-      <li class="lang" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="uk" aria-pressed="false">UA</button></li>
+      <li class="lang" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="uk" aria-pressed="false">UA</button><button type="button" data-lang="sk" aria-pressed="false">SK</button></li>
     </ul></nav>
   </div>
 </header>
@@ -321,47 +332,47 @@ footer{border-top:1px solid var(--line);padding-block:24px;font-size:12px;color:
 <!-- ===================== HOME ===================== -->
 <div class="page" id="page-home">
   <section class="hero wrap">
-    <h1 class="h-xl" data-i18n="k3">Inna Romashova.</h1>
-    <p class="role" data-i18n="k4">Brand &amp; Web Designer</p>
-    <ul class="facts">
+    <h1 class="h-xl fade-up" data-i18n="k3">Inna Romashova.</h1>
+    <p class="role fade-up" data-i18n="k4">Brand &amp; Web Designer</p>
+    <ul class="facts fade-up">
       <li data-i18n="k5">7+ years in design</li>
       <li data-i18n="k5b">Graphic design</li>
       <li data-i18n="k6">Webflow &amp; vibe-coded websites</li>
     </ul>
-    <p class="lead" data-i18n="k7">I design brands and build the websites that carry them — so your business looks as good as it works.</p>
-    <div class="btn-row"><a class="btn" href="#selected" data-scroll data-i18n="k8">View work</a></div>
+    <p class="lead fade-up" data-i18n="k7">I design brands and build the websites that carry them — so your business looks as good as it works.</p>
+    <div class="btn-row fade-up"><a class="btn" href="#selected" data-scroll data-i18n="k8">View work</a></div>
   </section>
 
   <section class="band" id="selected">
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head fade-up">
         <h2 class="h-lg" data-i18n="k9">Selected work</h2>
         <a class="link-more" href="#work" data-i18n="k10">All projects</a>
       </div>
-      <div class="tiles" id="home-tiles"></div>
+      <div class="tiles stagger" id="home-tiles"></div>
     </div>
   </section>
 
   <section>
     <div class="wrap">
-      <h2 class="h-lg center" data-i18n="k11">What I do</h2>
-      <div class="grid2" style="margin-top:48px">
-        <article class="card alt">
+      <h2 class="h-lg center fade-up" data-i18n="k11">What I do</h2>
+      <div class="grid2 stagger" style="margin-top:48px">
+        <article class="card alt fade-up">
           <h3 data-i18n="k12">Logo &amp; Brand Identity</h3>
           <p class="one" data-i18n="k13">A visual system your business can grow with.</p>
           <p class="inc" data-i18n="k14"><b>Includes:</b> logo, colour palette, typography, brand guidelines, social media templates.</p>
         </article>
-        <article class="card alt">
+        <article class="card alt fade-up">
           <h3 data-i18n="k15">Landing Page Design</h3>
           <p class="one" data-i18n="k16">One page with one clear goal — from the first wireframe to a live site.</p>
           <p class="inc" data-i18n="k17"><b>Includes:</b> structure and copy outline, wireframe, final design in Figma, mobile version. Optional: turnkey build in Webflow or vibe-coded.</p>
         </article>
-        <article class="card alt">
+        <article class="card alt fade-up">
           <h3 data-i18n="k18">Website Build</h3>
           <p class="one" data-i18n="k19">From design to launch — or straight to the build if you already have a layout.</p>
           <p class="inc" data-i18n="k20"><b>Includes:</b> site design or build from your Figma file, responsive layout, animations, CMS setup, launch support. In Webflow or vibe-coded.</p>
         </article>
-        <article class="card alt">
+        <article class="card alt fade-up">
           <h3 data-i18n="k21">Print &amp; Packaging</h3>
           <p class="one" data-i18n="k22">Packaging and print that look like part of the same brand — from labels to event materials.</p>
           <p class="inc" data-i18n="k23"><b>Includes:</b> packaging and labels, dielines, brochures, menus and flyers, print-ready files.</p>
@@ -372,25 +383,25 @@ footer{border-top:1px solid var(--line);padding-block:24px;font-size:12px;color:
 
   <section class="band">
     <div class="wrap">
-      <h2 class="h-lg center" data-i18n="k24">How I work</h2>
-      <ol class="steps">
-        <li><span class="n">1</span><h3 data-i18n="k25">Brief</h3><p data-i18n="k26">We define the goal, audience and scope. You get a clear plan and timeline before any design starts.</p></li>
-        <li><span class="n">2</span><h3 data-i18n="k27">Concept</h3><p data-i18n="k28">I explore directions and present one or two that fit the brief, with reasoning — not a pile of options.</p></li>
-        <li><span class="n">3</span><h3 data-i18n="k29">Design</h3><p data-i18n="k30">We refine the chosen direction together, usually over two rounds of feedback.</p></li>
-        <li><span class="n">4</span><h3 data-i18n="k31">Build &amp; Launch</h3><p data-i18n="k32">I build the site (or prepare print files), test it and hand over everything you need.</p></li>
+      <h2 class="h-lg center fade-up" data-i18n="k24">How I work</h2>
+      <ol class="steps stagger">
+        <li class="fade-up"><span class="n">1</span><h3 data-i18n="k25">Brief</h3><p data-i18n="k26">We define the goal, audience and scope. You get a clear plan and timeline before any design starts.</p></li>
+        <li class="fade-up"><span class="n">2</span><h3 data-i18n="k27">Concept</h3><p data-i18n="k28">I explore directions and present one or two that fit the brief, with reasoning — not a pile of options.</p></li>
+        <li class="fade-up"><span class="n">3</span><h3 data-i18n="k29">Design</h3><p data-i18n="k30">We refine the chosen direction together, usually over two rounds of feedback.</p></li>
+        <li class="fade-up"><span class="n">4</span><h3 data-i18n="k31">Build &amp; Launch</h3><p data-i18n="k32">I build the site (or prepare print files), test it and hand over everything you need.</p></li>
       </ol>
     </div>
   </section>
 
   <section>
     <div class="wrap">
-      <h2 class="h-lg center" data-i18n="k33">What clients say</h2>
-      <div class="quotes">
-        <figure class="quote alt">
+      <h2 class="h-lg center fade-up" data-i18n="k33">What clients say</h2>
+      <div class="quotes stagger">
+        <figure class="quote alt fade-up">
           <blockquote data-i18n="k34">“She created all the designs for our summer festival. Her attention to detail was evident in every part of the project, and she met every deadline while communicating clearly throughout.”</blockquote>
           <figcaption data-i18n="k35"><b>Olja Synytska</b>Video Editor</figcaption>
         </figure>
-        <figure class="quote alt">
+        <figure class="quote alt fade-up">
           <blockquote data-i18n="k36">“Working with her was a pleasure. I appreciate her professionalism and would recommend her to anyone looking for professional design solutions.”</blockquote>
           <figcaption data-i18n="k37"><b>Oksana Morova</b>Growth &amp; Digital Marketing Specialist</figcaption>
         </figure>
@@ -399,7 +410,7 @@ footer{border-top:1px solid var(--line);padding-block:24px;font-size:12px;color:
   </section>
 
   <section class="band">
-    <div class="wrap about-short">
+    <div class="wrap about-short fade-up">
       <h2 class="h-lg" data-i18n="k2">About</h2>
       <p data-i18n="k38">I’ve spent 7+ years designing brands, print and websites — often on the same project. Today I combine both: I design the identity and build the site that carries it.</p>
       <a class="link-more" href="#about" data-i18n="k39">More about me</a>
@@ -410,7 +421,7 @@ footer{border-top:1px solid var(--line);padding-block:24px;font-size:12px;color:
 <!-- ===================== WORK ===================== -->
 <div class="page" id="page-work" hidden>
   <section class="wrap center" style="padding-bottom:0">
-    <h1 class="h-xl" data-i18n="k1">Work</h1>
+    <h1 class="h-xl fade-up" data-i18n="k1">Work</h1>
     <p class="lead" style="max-width:620px;margin:20px auto 0" data-i18n="k40">Selected projects across brand identity, web design and print. Filter by type or browse everything.</p>
 
   </section>
@@ -431,10 +442,10 @@ footer{border-top:1px solid var(--line);padding-block:24px;font-size:12px;color:
 <!-- ===================== ABOUT ===================== -->
 <div class="page" id="page-about" hidden>
   <section class="wrap">
-    <h1 class="h-xl center" data-i18n="k2">About</h1>
+    <h1 class="h-xl center fade-up" data-i18n="k2">About</h1>
     <div class="about-grid">
-      <div class="portrait"><img src="https://res.cloudinary.com/dcwwjvlcv/image/upload/f_auto,q_auto/v1791407653/portrait_m1uxe7.jpg" alt="Inna, brand and web designer" width="1200" height="1490" loading="lazy" decoding="async"></div>
-      <div class="about-text">
+      <div class="portrait fade-up"><img src="https://res.cloudinary.com/dcwwjvlcv/image/upload/v1791887622/magnific__use-the-first-image-img1-as-the-base-and-the-secon__45856_grzkn4.jpg" alt="Inna, brand and web designer" width="1200" height="1490" loading="lazy" decoding="async"></div>
+      <div class="about-text fade-up">
         <p data-i18n="k45">I’m Inna, a brand and web designer with 7+ years of experience. I started in graphic design — logos, packaging, print — and moved into web because clients kept asking for both. Now most of my projects run from identity to a live site.</p>
         <p data-i18n="k46">I’ve designed visual identities, marketing materials and digital products for healthcare, MedTech, e-learning, and natural beauty and home care brands — including Helsi, Choice, Lexus and Ukraine’s 30th Independence Anniversary — and delivered work for clients from the UK and Switzerland.</p>
       </div>
@@ -443,11 +454,11 @@ footer{border-top:1px solid var(--line);padding-block:24px;font-size:12px;color:
   <section class="band">
     <div class="wrap">
       <h2 class="h-md" data-i18n="k48">Skills</h2>
-      <div class="grid2 skills">
-        <article class="card"><h3 data-i18n="c1">Brand &amp; print</h3><p data-i18n="c2">Brand identity, graphic design, logo design, print &amp; packaging, presentation design</p></article>
-        <article class="card"><h3 data-i18n="c3">Web</h3><p data-i18n="c4">Landing page design, website design, UI/UX design, Webflow development, vibe-coding</p></article>
-        <article class="card"><h3 data-i18n="c5">Social &amp; video</h3><p data-i18n="c6">Social media design, video editing</p></article>
-        <article class="card"><h3 data-i18n="k64">Tools</h3><p>Figma, Adobe Illustrator, Adobe Photoshop, Adobe InDesign, Adobe Premiere Pro, Webflow, Sketch, Axure, Claude, ChatGPT, Slack</p></article>
+      <div class="grid2 skills stagger">
+        <article class="card fade-up"><h3 data-i18n="c1">Brand &amp; print</h3><p data-i18n="c2">Brand identity, graphic design, logo design, print &amp; packaging, presentation design</p></article>
+        <article class="card fade-up"><h3 data-i18n="c3">Web</h3><p data-i18n="c4">Landing page design, website design, UI/UX design, Webflow development, vibe-coding</p></article>
+        <article class="card fade-up"><h3 data-i18n="c5">Social &amp; video</h3><p data-i18n="c6">Social media design, video editing</p></article>
+        <article class="card fade-up"><h3 data-i18n="k64">Tools</h3><p>Figma, Adobe Illustrator, Adobe Photoshop, Adobe InDesign, Adobe Premiere Pro, Webflow, Sketch, Axure, Claude, ChatGPT, Slack</p></article>
       </div>
       <p class="langs"><b data-i18n="k60">Languages</b> <span data-i18n="c7">English, Ukrainian, Russian</span></p>
     </div>
@@ -1174,14 +1185,19 @@ const UI_UK = {
 const SMALL_UK = {'Print & Packaging':'Поліграфія та пакування','Logo':'Логотип','Landing page':'Лендинг','Event materials':'Матеріали для подій','[Project name]':'[Назва проєкту]','[Year]':'[Рік]'};
 const STATIC_UK = {"k0": "Інна", "k1": "Роботи", "k2": "Про мене", "k3": "Інна Ромашова.", "k4": "Бренд- і веб-дизайнерка", "k5": "7+ років у дизайні", "k6": "Сайти на Webflow і вайбкодинг", "k7": "Створюю бренди й сайти, які їх несуть, — щоб ваш бізнес виглядав так само добре, як працює.", "k8": "Дивитися роботи", "k9": "Вибрані роботи", "k10": "Усі проєкти", "k11": "Що я роблю", "k12": "Логотип і айдентика", "k13": "Візуальна система, з якою ваш бізнес може рости.", "k14": "<b>Що входить:</b> логотип, палітра, типографіка, брендбук, шаблони для соцмереж.", "k15": "Дизайн лендингу", "k16": "Одна сторінка з однією чіткою метою — від першого вайрфрейму до готового сайту.", "k17": "<b>Що входить:</b> структура й план текстів, вайрфрейм, фінальний дизайн у Figma, мобільна версія. За бажанням — розробка під ключ у Webflow або вайбкодингом.", "k18": "Розробка сайту", "k19": "Від дизайну до запуску — або одразу верстка, якщо макет уже є.", "k20": "<b>Що входить:</b> дизайн сайту або верстка з вашого Figma-файлу, адаптивність, анімації, налаштування CMS, супровід запуску. У Webflow або вайбкодингом.", "k21": "Поліграфія та пакування", "k22": "Пакування й поліграфія в одному стилі з брендом — від етикеток до матеріалів для подій.", "k23": "<b>Що входить:</b> пакування та етикетки, розгортки, брошури, меню й флаєри, файли до друку.", "k24": "Як я працюю", "k25": "Бриф", "k26": "Визначаємо мету, аудиторію та обсяг робіт. Ви отримуєте зрозумілий план і терміни ще до початку дизайну.", "k27": "Концепція", "k28": "Я досліджую напрями й показую один-два, що відповідають брифу, з поясненням — а не купу варіантів.", "k29": "Дизайн", "k30": "Разом доопрацьовуємо обраний напрям, зазвичай за два раунди правок.", "k31": "Розробка і запуск", "k32": "Я верстаю сайт (або готую файли до друку), тестую його і передаю все, що вам потрібно.", "k33": "Що кажуть клієнти", "k34": "«Вона створила весь дизайн для нашого літнього фестивалю. Увага до деталей була помітна в кожній частині проєкту, вона дотримувалася всіх дедлайнів і чітко комунікувала на кожному етапі.»", "k35": "<b>Оля Синицька</b>Відеомонтажерка", "k36": "«Працювати з нею було задоволенням. Я ціную її професіоналізм і рекомендую її всім, хто шукає професійні дизайн-рішення.»", "k37": "<b>Оксана Морова</b>Спеціалістка з growth- і digital-маркетингу", "k38": "Понад 7 років я створюю бренди, поліграфію та сайти — часто в межах одного проєкту. Тепер я поєдную обидва напрями: розробляю айдентику і верстаю сайт, який її несе.", "k39": "Більше про мене", "k40": "Вибрані проєкти: айдентика, веб-дизайн і поліграфія. Відфільтруйте за типом або перегляньте все.", "k41": "Усі", "k42": "Веб", "k43": "Бренд і айдентика", "k44": "Ваше фото", "k45": "Я Інна, бренд- і веб-дизайнерка з досвідом понад 7 років. Починала з графічного дизайну — логотипи, пакування, поліграфія — і перейшла у веб, бо клієнти постійно просили і те, й інше. Тепер більшість моїх проєктів проходять шлях від айдентики до готового сайту.", "k46": "Я створювала айдентику, маркетингові матеріали та цифрові продукти для медицини, MedTech, онлайн-освіти, брендів натуральної косметики й засобів для дому — зокрема для Helsi, Choice, Lexus і 30-річчя Незалежності України — та працювала з клієнтами з Великої Британії та Швейцарії.", "k47": "Працюю українською, англійською та російською з клієнтами в Європі й за її межами.", "k48": "Навички", "k49": "Айдентика", "k50": "Дизайн логотипів", "k51": "Дизайн лендингів", "k52": "Дизайн сайтів", "k53": "Розробка на Webflow", "k54": "Вайбкодинг", "k55": "Поліграфія та пакування", "k56": "UI/UX-дизайн", "k57": "Дизайн для соцмереж", "k58": "Дизайн презентацій", "k59": "Відеомонтаж", "k60": "Мови", "k61": "Англійська", "k62": "Українська", "k63": "Російська", "k64": "Інструменти", "k65": "Досвід", "k66": "Освіта", "k67": "2024 — дотепер", "k68": "Бренд- і веб-дизайнерка на фрилансі", "k69": "Віддалено", "k70": "Айдентика, пакування, поліграфія та сайти для малого бізнесу і стартапів.", "k71": "Веб-дизайнерка та UI/UX", "k72": "ImproveIT Solutions · Віддалено", "k73": "Аутсорс для хайтек-компаній і стартапів. У невеликій команді створила прототип продукту, який клієнт прийняв, — це привело до контракту на розробку всього застосунку. Також поліграфія, соцмережі та відеопрезентація компанії.", "k74": "Графічна та веб-дизайнерка", "k75": "Choice · Київ", "k76": "Український виробник натуральних екологічних брендів для здоров’я, краси та догляду за домом. Створила лендинг для онлайн-марафону, який привів нових клієнтів і збільшив продажі. Пакування, каталоги, листівки, флаєри, сайти на конструкторах та ідеї для фотозйомок продукції.", "k77": "Elba · Віддалено", "k78": "Агенція онлайн-освіти. Розробила навчальний продукт від початку до кінця — щоденники, чек-листи, банери — і створювала сайти на конструкторах.", "k79": "Графічна дизайнерка та UI/UX", "k80": "Helsi · Київ", "k81": "Електронна медична система для пацієнтів, лікарів і клінік. Створила лендинг для онлайн-запису до лікаря, який працює досі. Дизайн інтерфейсів на основі поведінки користувачів (Sketch, Figma), клікабельні прототипи в Axure, поліграфія та соцмережі.", "k82": "Комп’ютерна графіка та дизайн", "k83": "Комп’ютерна академія IT STEP", "k84": "Бакалавр, ресторанна справа", "k85": "Київський національний торговельно-економічний університет", "k86": "Готельне господарство", "k87": "Київський коледж готельного господарства", "k88": "Відкрита до нових проєктів і повної зайнятості.", "k89": "© 2026 Інна Ромашова · Бренд- і веб-дизайнерка", "k90": "Цей сайт зроблено вайбкодингом — дизайн у Figma, код за допомогою ШІ.", "k91": "Зображення", "k92": "Закрити", "c1": "Бренд і поліграфія", "c2": "Айдентика, графічний дизайн, дизайн логотипів, поліграфія та пакування, дизайн презентацій", "c3": "Веб", "c4": "Дизайн лендингів, дизайн сайтів, UI/UX-дизайн, розробка на Webflow, вайбкодинг", "c5": "Соцмережі та відео", "c6": "Дизайн для соцмереж, відеомонтаж", "c7": "Англійська, українська, російська"};
 
+// ---------- Slovak version: static texts, tags and UI. Case texts fall back to English until CASES_SK is filled ----------
+const STATIC_SK = {"k0": "Inna", "k1": "Práce", "k2": "O mne", "k3": "Inna Romashova.", "k4": "Brand a web dizajnérka", "k5": "7+ rokov v dizajne", "k5b": "Grafický dizajn", "k49b": "Grafický dizajn", "k6": "Weby vo Webflow a vibe coding", "k7": "Navrhujem značky a stavam weby, ktoré ich nesú — aby váš biznis vyzeral tak dobre, ako funguje.", "k8": "Zobraziť práce", "k9": "Vybrané práce", "k10": "Všetky projekty", "k11": "Čo robím", "k12": "Logo a vizuálna identita", "k13": "Vizuálny systém, s ktorým môže váš biznis rásť.", "k14": "<b>Zahŕňa:</b> logo, farebnú paletu, typografiu, manuál značky, šablóny pre sociálne siete.", "k15": "Dizajn landing page", "k16": "Jedna stránka s jedným jasným cieľom — od prvého wireframu po hotový web.", "k17": "<b>Zahŕňa:</b> štruktúru a osnovu textov, wireframe, finálny dizajn vo Figme, mobilnú verziu. Voliteľne: kompletná realizácia vo Webflow alebo vibe codingom.", "k18": "Tvorba webu", "k19": "Od dizajnu po spustenie — alebo rovno realizácia, ak už máte návrh.", "k20": "<b>Zahŕňa:</b> dizajn webu alebo realizáciu z vášho súboru vo Figme, responzívne rozloženie, animácie, nastavenie CMS, podporu pri spustení. Vo Webflow alebo vibe codingom.", "k21": "Tlač a obaly", "k22": "Obaly a tlač, ktoré vyzerajú ako súčasť jednej značky — od etikiet po materiály na podujatia.", "k23": "<b>Zahŕňa:</b> obaly a etikety, rozvinuté tvary (dielines), brožúry, menu a letáky, súbory pripravené na tlač.", "k24": "Ako pracujem", "k25": "Zadanie", "k26": "Definujeme cieľ, publikum a rozsah. Pred začiatkom dizajnu dostanete jasný plán a harmonogram.", "k27": "Koncept", "k28": "Preskúmam smery a predstavím jeden-dva, ktoré zodpovedajú zadaniu, aj s odôvodnením — nie kopu možností.", "k29": "Dizajn", "k30": "Spoločne dolaďujeme zvolený smer, zvyčajne v dvoch kolách pripomienok.", "k31": "Realizácia a spustenie", "k32": "Postavím web (alebo pripravím súbory na tlač), otestujem ho a odovzdám všetko, čo potrebujete.", "k33": "Čo hovoria klienti", "k34": "„Vytvorila všetky dizajny pre náš letný festival. Pozornosť k detailom bola viditeľná v každej časti projektu, dodržala všetky termíny a po celý čas jasne komunikovala.“", "k35": "<b>Olja Synytska</b>Video editorka", "k36": "„S ňou sa pracovalo výborne. Oceňujem jej profesionalitu a odporúčam ju každému, kto hľadá profesionálne dizajnérske riešenia.“", "k37": "<b>Oksana Morova</b>Špecialistka na growth a digitálny marketing", "k38": "Viac ako 7 rokov navrhujem značky, tlač a weby — často v rámci jedného projektu. Dnes tieto oblasti spájam: navrhnem identitu a postavím web, ktorý ju nesie.", "k39": "Viac o mne", "k40": "Vybrané projekty z oblasti vizuálnej identity, webdizajnu a tlače. Filtrujte podľa typu alebo si pozrite všetko.", "k41": "Všetko", "k42": "Web", "k43": "Značka a identita", "k44": "Vaša fotka", "k45": "Som Inna, brand a web dizajnérka so 7+ rokmi skúseností. Začínala som v grafickom dizajne — logá, obaly, tlač — a prešla som k webu, pretože klienti si pýtali oboje. Dnes väčšina mojich projektov vedie od identity až po hotový web.", "k46": "Navrhovala som vizuálne identity, marketingové materiály a digitálne produkty pre zdravotníctvo, MedTech, e-learning a značky prírodnej kozmetiky a domácej chémie — vrátane Helsi, Choice, Lexus a 30. výročia nezávislosti Ukrajiny — a pracovala som pre klientov z Veľkej Británie a Švajčiarska.", "k47": "Pracujem po anglicky, ukrajinsky a rusky s klientmi v Európe aj mimo nej.", "k48": "Zručnosti", "k49": "Vizuálna identita", "k50": "Dizajn log", "k51": "Dizajn landing page", "k52": "Dizajn webov", "k53": "Vývoj vo Webflow", "k54": "Vibe coding", "k55": "Tlač a obaly", "k56": "UI/UX dizajn", "k57": "Dizajn pre sociálne siete", "k58": "Dizajn prezentácií", "k59": "Strih videa", "k60": "Jazyky", "k61": "Angličtina", "k62": "Ukrajinčina", "k63": "Ruština", "k64": "Nástroje", "k65": "Skúsenosti", "k66": "Vzdelanie", "k67": "2024 — dnes", "k68": "Brand a web dizajnérka na voľnej nohe", "k69": "Na diaľku", "k70": "Vizuálne identity, obaly, tlač a weby pre malé firmy a startupy.", "k71": "Web dizajnérka a UI/UX", "k72": "ImproveIT Solutions · Na diaľku", "k73": "Outsourcing pre hi-tech firmy a startupy. V malom tíme som navrhla prototyp produktu, ktorý klient prijal — viedlo to k zákazke na celú aplikáciu. Tiež tlač, sociálne siete a firemná video prezentácia.", "k74": "Grafická a web dizajnérka", "k75": "Choice · Kyjev", "k76": "Ukrajinský výrobca prírodných ekologických značiek pre zdravie, krásu a starostlivosť o domácnosť. Navrhla som landing page pre online maratón, ktorá priniesla nových klientov a zvýšila predaj. Obaly, katalógy, letáky, weby v nástrojoch na tvorbu webov a nápady na produktové fotenia.", "k77": "Elba · Na diaľku", "k78": "E-learningová agentúra. Navrhla som vzdelávací produkt od začiatku do konca — diáre, checklisty, bannery — a stavala som weby v nástrojoch na tvorbu webov.", "k79": "Grafická dizajnérka a UI/UX", "k80": "Helsi · Kyjev", "k81": "Elektronický zdravotný systém pre pacientov, lekárov a kliniky. Navrhla som landing page pre vzdialenú rezerváciu k lekárovi, ktorá funguje dodnes. Návrh rozhraní podľa správania používateľov (Sketch, Figma), klikateľné prototypy v Axure, tlač a sociálne siete.", "k82": "Počítačová grafika a dizajn", "k83": "Step IT Academy", "k84": "Bakalár, reštauračný biznis", "k85": "Kyjevská národná univerzita obchodu a ekonomiky", "k86": "Hotelový manažment", "k87": "Kyjevská hotelová škola", "k88": "Momentálne som otvorená novým projektom a práci na plný úväzok.", "k89": "© 2026 Inna Romashova · Brand a web dizajnérka", "k90": "Tento web je vytvorený vibe codingom — dizajn vo Figme, kód s pomocou AI.", "k91": "Obrázok", "k92": "Zavrieť", "c1": "Značka a tlač", "c2": "Vizuálna identita, grafický dizajn, dizajn log, tlač a obaly, dizajn prezentácií", "c3": "Web", "c4": "Dizajn landing page, dizajn webov, UI/UX dizajn, vývoj vo Webflow, vibe coding", "c5": "Sociálne siete a video", "c6": "Dizajn pre sociálne siete, strih videa", "c7": "Angličtina, ukrajinčina, ruština"};
+const TAGS_SK = {"Brand identity": "Vizuálna identita", "Landing page design": "Dizajn landing page", "Copywriting": "Copywriting", "Website": "Web", "Vibecoding": "Vibe coding", "Website design": "Dizajn webu", "Webflow development": "Vývoj vo Webflow", "Layout": "Layout", "Logo design": "Dizajn loga", "Print": "Tlač", "Social media": "Sociálne siete", "Packaging": "Obaly", "Label design": "Dizajn etikiet", "Brochure design": "Dizajn brožúry", "Prepress": "Predtlačová príprava", "Leaflet design": "Dizajn letáku", "Brand guidelines": "Manuál značky", "Editorial design": "Editoriálny dizajn", "Presentation": "Prezentácia", "Animation": "Animácia", "Template customisation": "Úprava šablóny", "UX/UI design": "UX/UI dizajn", "HTML/CSS prototype": "HTML/CSS prototyp", "Catalogue design": "Dizajn katalógu"};
+const UI_SK = {"client": "Klient", "task": "Zadanie", "role": "Rola", "tools": "Nástroje", "challenge": "Výzva", "solution": "Riešenie", "process": "Proces", "result": "Výsledok", "next": "Ďalší projekt", "live": "Zobraziť web", "empty": "V tejto kategórii zatiaľ nie sú žiadne projekty.", "image": "Obrázok", "work": "Práce", "about": "O mne", "site": "Inna Romashova — portfólio"};
+const CASES_SK = {};
 let LANG='en';
-try{ const q=new URLSearchParams(location.search).get('lang'); LANG = q==='uk'||q==='ua' ? 'uk' : (localStorage.getItem('lang')==='uk'?'uk':'en'); }catch(e){}
-const ui = (k,en) => LANG==='uk' ? (UI_UK[k]||en) : en;
+try{ const q=new URLSearchParams(location.search).get('lang'); const sv=localStorage.getItem('lang'); LANG = q==='ua' ? 'uk' : (['uk','sk'].includes(q) ? q : (['uk','sk'].includes(sv) ? sv : 'en')); }catch(e){}
+const ui = (k,en) => LANG==='en' ? en : ((LANG==='sk'?UI_SK:UI_UK)[k]||en);
 function loc(c){
-  if(LANG!=='uk') return c;
-  const u=CASES_UK[c.id]||{};
+  if(LANG==='en') return c;
+  const u=(LANG==='sk'?CASES_SK:CASES_UK)[c.id]||{};
   const o={...c,...u};
-  o.tags=c.tags.map(t=>TAGS_UK[t]||t);
+  o.tags=c.tags.map(t=>(LANG==='sk'?TAGS_SK:TAGS_UK)[t]||t);
   if(o.year==='[Year]') o.year='[Рік]';
   if(u.caps) o.shots=c.shots.map((s,i)=>({...s,cap:u.caps[i]!=null?u.caps[i]:s.cap}));
   return o;
@@ -1193,10 +1209,14 @@ const todo = s => String(s).replace(/\[([^\]]+)\]/g,'<mark class="todo">[$1]</ma
 const swatches = s => String(s).replace(/#([0-9A-Fa-f]{6})\b/g,'<i class="sw" style="background:#$1" title="#$1"></i>');
 const tagList = t => `<ul class="tags">${t.map(x=>`<li>${x}</li>`).join('')}</ul>`;
 const cover = (c, eager) => `<div class="cover ${c.cover}"${c.photoBg?` style="background:${c.photoBg}"`:''}>${c.photo&&/^(img\/|https?:)/.test(c.photo)?'':`<div><div class="w">${c.coverW}</div><div class="s">${c.coverS}</div></div><span class="ph">cover placeholder</span>`}${c.photo?`<img class="photo" src="${c.photo}"${c.photoW?` width="${c.photoW}" height="${c.photoH}"`:''} ${c.photoFit==='contain'?'data-fade':c.photoFit==='whole'?'style="object-fit:contain"':`style="object-position:${c.photoPos||'center'}"`} alt="${c.photoAlt||''}" ${eager?'loading="eager" fetchpriority="high"':'loading="lazy"'} onerror="this.remove()">`:''}</div>`;
-const caseTile = (c0, wide) => { const c=loc(c0); return `<a class="tile${wide?' wide':''}" href="#${c.id}">${cover(c)}<div class="meta"><h3>${c.name}</h3>${tagList(c.tags)}</div></a>`; };
+const caseTile = (c0, wide) => { const c=loc(c0); return `<a class="tile${wide?' wide':''} fade-up" href="#${c.id}">${cover(c)}<div class="meta"><h3>${c.name}</h3>${tagList(c.tags)}</div></a>`; };
+
+// Fade-up: start the animation when the element enters the viewport
+const fadeIO=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); fadeIO.unobserve(e.target); } }),{threshold:.15});
+function observeFade(root){ (root||document).querySelectorAll('.fade-up:not(.in)').forEach(el=>fadeIO.observe(el)); }
 
 // Home tiles
-function renderHome(){ document.getElementById('home-tiles').innerHTML = CASES.map((c,i)=>caseTile(c,i===0||(i===CASES.length-1&&i%2===1))).join(''); }
+function renderHome(){ document.getElementById('home-tiles').innerHTML = CASES.map((c,i)=>caseTile(c,i===0||(i===CASES.length-1&&i%2===1))).join(''); observeFade(document.getElementById('home-tiles')); }
 renderHome();
 
 // Work grid + filter
@@ -1205,9 +1225,10 @@ function renderWork(){
   const g = document.getElementById('work-grid');
   const cs = CASES.filter(c=>filter==='all'||c.cats.includes(filter));
   const sm = SMALL.map((s,i)=>({...s,i})).filter(s=>filter==='all'||s.cat===filter);
-  let html = cs.map(c=>caseTile(c,true).replace('class="tile wide"','class="tile wide case"').replace('<h3>','<h3 aria-level="2">')).join('');
+  let html = cs.map(c=>caseTile(c,true).replace('class="tile wide ','class="tile wide case ').replace('<h3>','<h3 aria-level="2">')).join('');
   html += sm.map(s=>`<button class="small" type="button" data-i="${s.i}"><div class="thumb">${ui('image','Image')}</div><div class="cap"><b>${todo(smallT(s.name))}</b> · ${smallT(s.type)} · ${todo(smallT(s.year))}</div></button>`).join('');
   g.innerHTML = html || `<p class="empty">${ui('empty','No projects in this category yet.')}</p>`;
+  observeFade(g);
 }
 document.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{
   filter=b.dataset.f;
@@ -1243,7 +1264,7 @@ function shotHTML(s){
   } else {
     body=`<div class="img">Image${o.src?`<img class="photo" src="${o.src}" alt="${o.alt||''}"${o.w?` width="${o.w}" height="${o.h}"`:''} loading="lazy" onerror="${o.optional?"this.closest('figure').remove()":'this.remove()'}">`:''}</div>`;
   }
-  return `<figure class="shot">${body}<figcaption>${todo(o.cap)}</figcaption></figure>`;
+  return `<figure class="shot fade-up">${body}<figcaption>${todo(o.cap)}</figcaption></figure>`;
 }
 function renderCase(c0){
   const i=CASES.indexOf(c0), next=loc(CASES[(i+1)%CASES.length]), c=loc(c0);
@@ -1262,15 +1283,16 @@ function renderCase(c0){
       <div><dt>${ui('tools','Tools')}</dt><dd>${todo(c.tools)}</dd></div>
     </dl>
   </div>
-  <section><div class="wrap prose"><h2>${ui('challenge','Challenge')}</h2><p>${swatches(todo(c.challenge))}</p></div></section>
+  <section><div class="wrap prose fade-up"><h2>${ui('challenge','Challenge')}</h2><p>${swatches(todo(c.challenge))}</p></div></section>
   <section class="band"><div class="wrap">
-    <div class="prose"><h2>${ui('solution','Solution')}</h2><p>${swatches(todo(c.solution))}</p></div>
+    <div class="prose fade-up"><h2>${ui('solution','Solution')}</h2><p>${swatches(todo(c.solution))}</p></div>
     <div class="shots">${c.shots.map(shotHTML).join('')}</div>
 
   </div></section>
-  <section><div class="wrap prose"><h2>${ui('process','Process')}</h2><ul>${c.process.map(p=>`<li>${todo(p)}</li>`).join('')}</ul></div></section>
-  <section class="band"><div class="wrap prose"><h2>${ui('result','Result')}</h2><p>${todo(c.result)}</p></div></section>
+  <section><div class="wrap prose fade-up"><h2>${ui('process','Process')}</h2><ul>${c.process.map(p=>`<li>${todo(p)}</li>`).join('')}</ul></div></section>
+  <section class="band"><div class="wrap prose fade-up"><h2>${ui('result','Result')}</h2><p>${todo(c.result)}</p></div></section>
   <a class="next" href="#${next.id}"><small>${ui('next','Next project')}</small><span>${next.name} →</span></a>`;
+  observeFade(document.getElementById('page-case'));
 }
 
 // Router (hash)
@@ -1311,16 +1333,18 @@ window.addEventListener('popstate',()=>{ const h=(location.hash||'#home').slice(
 // Language switch
 document.querySelectorAll('[data-i18n]').forEach(el=>{ el.dataset.en=el.innerHTML; });
 function applyLang(){
-  document.documentElement.lang = LANG==='uk'?'uk':'en';
-  document.querySelectorAll('[data-i18n]').forEach(el=>{ el.innerHTML = LANG==='uk' ? (STATIC_UK[el.dataset.i18n]||el.dataset.en) : el.dataset.en; });
+  document.documentElement.lang = LANG;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{ el.innerHTML = LANG==='en' ? el.dataset.en : ((LANG==='sk'?STATIC_SK:STATIC_UK)[el.dataset.i18n]||el.dataset.en); });
   document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===LANG)));
   renderHome(); renderWork();
 }
 document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>{
   LANG=b.dataset.lang; try{ localStorage.setItem('lang',LANG); }catch(e){}
   applyLang(); show(CUR,true);
+  document.querySelectorAll('.tile.fade-up,#page-case .fade-up').forEach(t=>t.classList.add('in','skip'));
 }));
 applyLang();
+observeFade();
 (function(){ const h=(location.hash||'#home').slice(1); show(isRoute(h)?h:'home'); })();
 </script>
 
