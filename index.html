@@ -6,19 +6,21 @@
 <title>Inna Romashova — Brand &amp; Web Designer Portfolio</title>
 <meta name="description" content="Portfolio of Inna Romashova, a brand and web designer: brand identity, landing pages, Webflow sites and print design for clients in Europe and beyond.">
 <meta name="theme-color" content="#DCD8CF">
-<!-- TODO: replace https://YOUR-DOMAIN.com/ with the real https:// address of the site (canonical, og:url) -->
-<link rel="canonical" href="https://YOUR-DOMAIN.com/">
+<link rel="preconnect" href="https://res.cloudinary.com">
+<!-- If you connect a custom domain, replace https://i-romashova-design.vercel.app/ with it in canonical, og:url, og:image and twitter:image -->
+<link rel="canonical" href="https://i-romashova-design.vercel.app/">
 
 <!-- Open Graph (Telegram, Facebook, LinkedIn, Instagram DMs) -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Inna Romashova">
 <meta property="og:title" content="Inna Romashova — Brand &amp; Web Designer Portfolio">
 <meta property="og:description" content="Portfolio of Inna Romashova, a brand and web designer: brand identity, landing pages, Webflow sites and print design for clients in Europe and beyond.">
-<meta property="og:url" content="https://YOUR-DOMAIN.com/">
+<meta property="og:url" content="https://i-romashova-design.vercel.app/">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="uk_UA">
-<!-- TODO: upload a 1200x630 px JPG/PNG preview image to the site root and make sure this https:// URL opens it -->
-<meta property="og:image" content="https://YOUR-DOMAIN.com/og-image.jpg">
+<meta property="og:locale:alternate" content="sk_SK">
+<!-- TODO: upload og-image.jpg (1200x630 px, JPG/PNG, under 1 MB) to the site root so that https://i-romashova-design.vercel.app/og-image.jpg opens -->
+<meta property="og:image" content="https://i-romashova-design.vercel.app/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Inna Romashova — brand and web designer portfolio">
@@ -27,7 +29,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Inna Romashova — Brand &amp; Web Designer Portfolio">
 <meta name="twitter:description" content="Portfolio of Inna Romashova, a brand and web designer: brand identity, landing pages, Webflow sites and print design for clients in Europe and beyond.">
-<meta name="twitter:image" content="https://YOUR-DOMAIN.com/og-image.jpg">
+<meta name="twitter:image" content="https://i-romashova-design.vercel.app/og-image.jpg">
 
 <!-- Icons (favicon.svg, favicon-32.png, apple-touch-icon.png are included next to index.html) -->
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -117,16 +119,12 @@ section{padding-block:96px}
 .hero>.fade-up:nth-child(3).in{animation-delay:.2s}
 .hero>.fade-up:nth-child(4).in{animation-delay:.3s}
 .hero>.fade-up:nth-child(5).in{animation-delay:.4s}
-.stagger>.fade-up:nth-child(2).in{animation-delay:.08s}
-.stagger>.fade-up:nth-child(3).in{animation-delay:.16s}
-.stagger>.fade-up:nth-child(4).in{animation-delay:.24s}
-.fade-up.skip{opacity:1;animation:none}
 @media (prefers-reduced-motion:reduce),(scripting:none){.fade-up{opacity:1}.fade-up.in{animation:none}}
 
 /* Case tiles */
 .tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-.tile{display:block;border-radius:var(--r-lg);overflow:hidden;background:var(--tile);color:var(--fg)}
-.tile:hover{text-decoration:none}
+.tile{display:block;border-radius:var(--r-lg);overflow:hidden;background:var(--tile);color:var(--fg);transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.tile:hover{text-decoration:none;transform:scale(1.012)}
 .tile.wide{grid-column:1/-1}
 .tile .meta{padding:22px 26px 26px;display:grid;gap:6px}
 .tile h3{font-size:24px;letter-spacing:-.025em;line-height:1.15}
@@ -174,9 +172,6 @@ section{padding-block:96px}
 .cover.speakup .w{font-weight:800;font-size:clamp(40px,6.5vw,76px);letter-spacing:-.05em;color:#1E1E1E;line-height:1}
 .cover.speakup .w b{color:#F5166B;font-weight:800}
 .cover.speakup .s{font-size:11px;letter-spacing:.4em;text-indent:.4em;opacity:.6;margin-top:12px;text-align:center}
-.cover .photo,.cover>div{transition:transform .7s cubic-bezier(.2,.7,.2,1)}
-.tile:hover .cover .photo,.tile:hover .cover>div{transform:scale(1.04)}
-.tile:hover .photo[data-fade]{transform:translateX(-50%) scale(1.04)}
 .cover .ph{position:absolute;right:14px;bottom:12px;font-size:11px;letter-spacing:0;background:rgba(0,0,0,.35);color:#fff;padding:3px 8px;border-radius:980px}
 
 /* Services */
@@ -208,10 +203,15 @@ section{padding-block:96px}
 
 /* Work page */
 .filters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:32px;position:sticky;top:calc(48px + env(safe-area-inset-top,0px));z-index:15;padding-block:12px;background:var(--nav);box-shadow:0 0 0 100vmax var(--nav);clip-path:inset(0 -100vmax);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px)}
-.chip{font:inherit;font-size:14px;padding:8px 18px;border-radius:980px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer}
+.chip{font:inherit;font-size:14px;padding:8px 18px;border-radius:980px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer;transition:background .25s ease,color .25s ease,border-color .25s ease}
 .chip[aria-pressed="true"]{background:var(--accent-fill);color:var(--on-accent);border-color:var(--accent-fill)}
 .work-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:48px}
 .work-grid .tile.case{grid-column:span 3}
+/* Filter animation: cards fade and scale out/in; hidden ones are removed from the layout afterwards */
+.work-grid>[data-category]{transition:opacity .35s ease,transform .35s ease}
+.work-grid>[data-category].is-out{opacity:0;transform:scale(.94);pointer-events:none}
+.work-grid>[data-category].is-gone{display:none}
+@media (prefers-reduced-motion:reduce){.work-grid>[data-category]{transition:none}.chip{transition:none}}
 .small{border:0;padding:0;font:inherit;text-align:left;cursor:zoom-in;background:var(--tile);border-radius:var(--r-md);overflow:hidden;color:var(--fg)}
 .small .thumb{aspect-ratio:4/3;display:grid;place-items:center;background:var(--band);color:var(--muted);font-size:13px;border-bottom:1px solid var(--line)}
 .small .cap{padding:12px 16px;font-size:13px;color:var(--muted)}
@@ -303,7 +303,7 @@ footer{border-top:1px solid var(--line);padding-block:24px;font-size:12px;color:
   .nav ul{gap:20px}
   .exp li{grid-template-columns:minmax(0,1fr);gap:2px}
 }
-@media (prefers-reduced-motion:reduce){.cover .photo,.cover>div{transition:none}.tile:hover .cover .photo,.tile:hover .cover>div{transform:none}.tile:hover .photo[data-fade]{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.tile{transition:none}.tile:hover{transform:none}}
 .nav .lang{display:flex;gap:2px;align-items:center}
 .nav .lang button{font:inherit;font-size:13px;background:none;border:0;padding:4px 6px;border-radius:6px;color:var(--fg);opacity:.55;cursor:pointer}
 .nav .lang button[aria-pressed="true"]{opacity:1;font-weight:600;background:var(--tile)}
@@ -345,34 +345,34 @@ footer{border-top:1px solid var(--line);padding-block:24px;font-size:12px;color:
 
   <section class="band" id="selected">
     <div class="wrap">
-      <div class="section-head fade-up">
+      <div class="section-head">
         <h2 class="h-lg" data-i18n="k9">Selected work</h2>
         <a class="link-more" href="#work" data-i18n="k10">All projects</a>
       </div>
-      <div class="tiles stagger" id="home-tiles"></div>
+      <div class="tiles" id="home-tiles"></div>
     </div>
   </section>
 
   <section>
     <div class="wrap">
-      <h2 class="h-lg center fade-up" data-i18n="k11">What I do</h2>
-      <div class="grid2 stagger" style="margin-top:48px">
-        <article class="card alt fade-up">
+      <h2 class="h-lg center" data-i18n="k11">What I do</h2>
+      <div class="grid2" style="margin-top:48px">
+        <article class="card alt">
           <h3 data-i18n="k12">Logo &amp; Brand Identity</h3>
           <p class="one" data-i18n="k13">A visual system your business can grow with.</p>
           <p class="inc" data-i18n="k14"><b>Includes:</b> logo, colour palette, typography, brand guidelines, social media templates.</p>
         </article>
-        <article class="card alt fade-up">
+        <article class="card alt">
           <h3 data-i18n="k15">Landing Page Design</h3>
           <p class="one" data-i18n="k16">One page with one clear goal — from the first wireframe to a live site.</p>
           <p class="inc" data-i18n="k17"><b>Includes:</b> structure and copy outline, wireframe, final design in Figma, mobile version. Optional: turnkey build in Webflow or vibe-coded.</p>
         </article>
-        <article class="card alt fade-up">
+        <article class="card alt">
           <h3 data-i18n="k18">Website Build</h3>
           <p class="one" data-i18n="k19">From design to launch — or straight to the build if you already have a layout.</p>
           <p class="inc" data-i18n="k20"><b>Includes:</b> site design or build from your Figma file, responsive layout, animations, CMS setup, launch support. In Webflow or vibe-coded.</p>
         </article>
-        <article class="card alt fade-up">
+        <article class="card alt">
           <h3 data-i18n="k21">Print &amp; Packaging</h3>
           <p class="one" data-i18n="k22">Packaging and print that look like part of the same brand — from labels to event materials.</p>
           <p class="inc" data-i18n="k23"><b>Includes:</b> packaging and labels, dielines, brochures, menus and flyers, print-ready files.</p>
@@ -383,25 +383,25 @@ footer{border-top:1px solid var(--line);padding-block:24px;font-size:12px;color:
 
   <section class="band">
     <div class="wrap">
-      <h2 class="h-lg center fade-up" data-i18n="k24">How I work</h2>
-      <ol class="steps stagger">
-        <li class="fade-up"><span class="n">1</span><h3 data-i18n="k25">Brief</h3><p data-i18n="k26">We define the goal, audience and scope. You get a clear plan and timeline before any design starts.</p></li>
-        <li class="fade-up"><span class="n">2</span><h3 data-i18n="k27">Concept</h3><p data-i18n="k28">I explore directions and present one or two that fit the brief, with reasoning — not a pile of options.</p></li>
-        <li class="fade-up"><span class="n">3</span><h3 data-i18n="k29">Design</h3><p data-i18n="k30">We refine the chosen direction together, usually over two rounds of feedback.</p></li>
-        <li class="fade-up"><span class="n">4</span><h3 data-i18n="k31">Build &amp; Launch</h3><p data-i18n="k32">I build the site (or prepare print files), test it and hand over everything you need.</p></li>
+      <h2 class="h-lg center" data-i18n="k24">How I work</h2>
+      <ol class="steps">
+        <li><span class="n">1</span><h3 data-i18n="k25">Brief</h3><p data-i18n="k26">We define the goal, audience and scope. You get a clear plan and timeline before any design starts.</p></li>
+        <li><span class="n">2</span><h3 data-i18n="k27">Concept</h3><p data-i18n="k28">I explore directions and present one or two that fit the brief, with reasoning — not a pile of options.</p></li>
+        <li><span class="n">3</span><h3 data-i18n="k29">Design</h3><p data-i18n="k30">We refine the chosen direction together, usually over two rounds of feedback.</p></li>
+        <li><span class="n">4</span><h3 data-i18n="k31">Build &amp; Launch</h3><p data-i18n="k32">I build the site (or prepare print files), test it and hand over everything you need.</p></li>
       </ol>
     </div>
   </section>
 
   <section>
     <div class="wrap">
-      <h2 class="h-lg center fade-up" data-i18n="k33">What clients say</h2>
-      <div class="quotes stagger">
-        <figure class="quote alt fade-up">
+      <h2 class="h-lg center" data-i18n="k33">What clients say</h2>
+      <div class="quotes">
+        <figure class="quote alt">
           <blockquote data-i18n="k34">“She created all the designs for our summer festival. Her attention to detail was evident in every part of the project, and she met every deadline while communicating clearly throughout.”</blockquote>
           <figcaption data-i18n="k35"><b>Olja Synytska</b>Video Editor</figcaption>
         </figure>
-        <figure class="quote alt fade-up">
+        <figure class="quote alt">
           <blockquote data-i18n="k36">“Working with her was a pleasure. I appreciate her professionalism and would recommend her to anyone looking for professional design solutions.”</blockquote>
           <figcaption data-i18n="k37"><b>Oksana Morova</b>Growth &amp; Digital Marketing Specialist</figcaption>
         </figure>
@@ -410,7 +410,7 @@ footer{border-top:1px solid var(--line);padding-block:24px;font-size:12px;color:
   </section>
 
   <section class="band">
-    <div class="wrap about-short fade-up">
+    <div class="wrap about-short">
       <h2 class="h-lg" data-i18n="k2">About</h2>
       <p data-i18n="k38">I’ve spent 7+ years designing brands, print and websites — often on the same project. Today I combine both: I design the identity and build the site that carries it.</p>
       <a class="link-more" href="#about" data-i18n="k39">More about me</a>
@@ -421,7 +421,7 @@ footer{border-top:1px solid var(--line);padding-block:24px;font-size:12px;color:
 <!-- ===================== WORK ===================== -->
 <div class="page" id="page-work" hidden>
   <section class="wrap center" style="padding-bottom:0">
-    <h1 class="h-xl fade-up" data-i18n="k1">Work</h1>
+    <h1 class="h-xl" data-i18n="k1">Work</h1>
     <p class="lead" style="max-width:620px;margin:20px auto 0" data-i18n="k40">Selected projects across brand identity, web design and print. Filter by type or browse everything.</p>
 
   </section>
@@ -442,10 +442,10 @@ footer{border-top:1px solid var(--line);padding-block:24px;font-size:12px;color:
 <!-- ===================== ABOUT ===================== -->
 <div class="page" id="page-about" hidden>
   <section class="wrap">
-    <h1 class="h-xl center fade-up" data-i18n="k2">About</h1>
+    <h1 class="h-xl center" data-i18n="k2">About</h1>
     <div class="about-grid">
-      <div class="portrait fade-up"><img src="https://res.cloudinary.com/dcwwjvlcv/image/upload/v1791887622/magnific__use-the-first-image-img1-as-the-base-and-the-secon__45856_grzkn4.jpg" alt="Inna, brand and web designer" width="1200" height="1490" loading="lazy" decoding="async"></div>
-      <div class="about-text fade-up">
+      <div class="portrait"><img src="https://res.cloudinary.com/dcwwjvlcv/image/upload/f_auto,q_auto/v1791887622/magnific__use-the-first-image-img1-as-the-base-and-the-secon__45856_grzkn4.jpg" alt="Inna, brand and web designer" width="1200" height="1490" loading="lazy" decoding="async"></div>
+      <div class="about-text">
         <p data-i18n="k45">I’m Inna, a brand and web designer with 7+ years of experience. I started in graphic design — logos, packaging, print — and moved into web because clients kept asking for both. Now most of my projects run from identity to a live site.</p>
         <p data-i18n="k46">I’ve designed visual identities, marketing materials and digital products for healthcare, MedTech, e-learning, and natural beauty and home care brands — including Helsi, Choice, Lexus and Ukraine’s 30th Independence Anniversary — and delivered work for clients from the UK and Switzerland.</p>
       </div>
@@ -454,11 +454,11 @@ footer{border-top:1px solid var(--line);padding-block:24px;font-size:12px;color:
   <section class="band">
     <div class="wrap">
       <h2 class="h-md" data-i18n="k48">Skills</h2>
-      <div class="grid2 skills stagger">
-        <article class="card fade-up"><h3 data-i18n="c1">Brand &amp; print</h3><p data-i18n="c2">Brand identity, graphic design, logo design, print &amp; packaging, presentation design</p></article>
-        <article class="card fade-up"><h3 data-i18n="c3">Web</h3><p data-i18n="c4">Landing page design, website design, UI/UX design, Webflow development, vibe-coding</p></article>
-        <article class="card fade-up"><h3 data-i18n="c5">Social &amp; video</h3><p data-i18n="c6">Social media design, video editing</p></article>
-        <article class="card fade-up"><h3 data-i18n="k64">Tools</h3><p>Figma, Adobe Illustrator, Adobe Photoshop, Adobe InDesign, Adobe Premiere Pro, Webflow, Sketch, Axure, Claude, ChatGPT, Slack</p></article>
+      <div class="grid2 skills">
+        <article class="card"><h3 data-i18n="c1">Brand &amp; print</h3><p data-i18n="c2">Brand identity, graphic design, logo design, print &amp; packaging, presentation design</p></article>
+        <article class="card"><h3 data-i18n="c3">Web</h3><p data-i18n="c4">Landing page design, website design, UI/UX design, Webflow development, vibe-coding</p></article>
+        <article class="card"><h3 data-i18n="c5">Social &amp; video</h3><p data-i18n="c6">Social media design, video editing</p></article>
+        <article class="card"><h3 data-i18n="k64">Tools</h3><p>Figma, Adobe Illustrator, Adobe Photoshop, Adobe InDesign, Adobe Premiere Pro, Webflow, Sketch, Axure, Claude, ChatGPT, Slack</p></article>
       </div>
       <p class="langs"><b data-i18n="k60">Languages</b> <span data-i18n="c7">English, Ukrainian, Russian</span></p>
     </div>
@@ -1209,31 +1209,49 @@ const todo = s => String(s).replace(/\[([^\]]+)\]/g,'<mark class="todo">[$1]</ma
 const swatches = s => String(s).replace(/#([0-9A-Fa-f]{6})\b/g,'<i class="sw" style="background:#$1" title="#$1"></i>');
 const tagList = t => `<ul class="tags">${t.map(x=>`<li>${x}</li>`).join('')}</ul>`;
 const cover = (c, eager) => `<div class="cover ${c.cover}"${c.photoBg?` style="background:${c.photoBg}"`:''}>${c.photo&&/^(img\/|https?:)/.test(c.photo)?'':`<div><div class="w">${c.coverW}</div><div class="s">${c.coverS}</div></div><span class="ph">cover placeholder</span>`}${c.photo?`<img class="photo" src="${c.photo}"${c.photoW?` width="${c.photoW}" height="${c.photoH}"`:''} ${c.photoFit==='contain'?'data-fade':c.photoFit==='whole'?'style="object-fit:contain"':`style="object-position:${c.photoPos||'center'}"`} alt="${c.photoAlt||''}" ${eager?'loading="eager" fetchpriority="high"':'loading="lazy"'} onerror="this.remove()">`:''}</div>`;
-const caseTile = (c0, wide) => { const c=loc(c0); return `<a class="tile${wide?' wide':''} fade-up" href="#${c.id}">${cover(c)}<div class="meta"><h3>${c.name}</h3>${tagList(c.tags)}</div></a>`; };
+const caseTile = (c0, wide) => { const c=loc(c0); return `<a class="tile${wide?' wide':''}" href="#${c.id}">${cover(c)}<div class="meta"><h3>${c.name}</h3>${tagList(c.tags)}</div></a>`; };
 
 // Fade-up: start the animation when the element enters the viewport
 const fadeIO=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); fadeIO.unobserve(e.target); } }),{threshold:.15});
 function observeFade(root){ (root||document).querySelectorAll('.fade-up:not(.in)').forEach(el=>fadeIO.observe(el)); }
 
 // Home tiles
-function renderHome(){ document.getElementById('home-tiles').innerHTML = CASES.map((c,i)=>caseTile(c,i===0||(i===CASES.length-1&&i%2===1))).join(''); observeFade(document.getElementById('home-tiles')); }
+function renderHome(){ document.getElementById('home-tiles').innerHTML = CASES.map((c,i)=>caseTile(c,i===0||(i===CASES.length-1&&i%2===1))).join(''); }
 renderHome();
 
 // Work grid + filter
 let filter = 'all';
+let filterTimer = null;
+const inFilter = (el,f) => f==='all' || el.dataset.category.split(' ').includes(f);
 function renderWork(){
   const g = document.getElementById('work-grid');
-  const cs = CASES.filter(c=>filter==='all'||c.cats.includes(filter));
-  const sm = SMALL.map((s,i)=>({...s,i})).filter(s=>filter==='all'||s.cat===filter);
-  let html = cs.map(c=>caseTile(c,true).replace('class="tile wide ','class="tile wide case ').replace('<h3>','<h3 aria-level="2">')).join('');
-  html += sm.map(s=>`<button class="small" type="button" data-i="${s.i}"><div class="thumb">${ui('image','Image')}</div><div class="cap"><b>${todo(smallT(s.name))}</b> · ${smallT(s.type)} · ${todo(smallT(s.year))}</div></button>`).join('');
+  let html = CASES.map(c=>caseTile(c,true).replace('class="tile wide"',`class="tile wide case" data-category="${c.cats.join(' ')}"`).replace('<h3>','<h3 aria-level="2">')).join('');
+  html += SMALL.map((s,i)=>`<button class="small" type="button" data-i="${i}" data-category="${s.cat}"><div class="thumb">${ui('image','Image')}</div><div class="cap"><b>${todo(smallT(s.name))}</b> · ${smallT(s.type)} · ${todo(smallT(s.year))}</div></button>`).join('');
   g.innerHTML = html || `<p class="empty">${ui('empty','No projects in this category yet.')}</p>`;
-  observeFade(g);
+  // apply the current filter instantly (no animation) after a re-render
+  g.querySelectorAll('[data-category]').forEach(el=>{ if(!inFilter(el,filter)) el.classList.add('is-out','is-gone'); });
+}
+function animateFilter(f){
+  const cards = [...document.querySelectorAll('#work-grid [data-category]')];
+  const show = cards.filter(el=>inFilter(el,f));
+  const hide = cards.filter(el=>!inFilter(el,f) && !el.classList.contains('is-gone'));
+  const delay = matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 350;
+  clearTimeout(filterTimer);
+  const reveal = () => {
+    show.forEach(el=>{ el.classList.remove('is-gone'); });
+    void document.getElementById('work-grid').offsetWidth; // let the browser apply the layout before fading in
+    show.forEach(el=>el.classList.remove('is-out'));
+  };
+  hide.forEach(el=>el.classList.add('is-out'));
+  filterTimer = setTimeout(()=>{
+    hide.forEach(el=>el.classList.add('is-gone'));
+    reveal();
+  }, hide.length ? delay : 0);
 }
 document.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{
   filter=b.dataset.f;
   document.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
-  renderWork();
+  animateFilter(filter);
 }));
 renderWork();
 
@@ -1264,7 +1282,7 @@ function shotHTML(s){
   } else {
     body=`<div class="img">Image${o.src?`<img class="photo" src="${o.src}" alt="${o.alt||''}"${o.w?` width="${o.w}" height="${o.h}"`:''} loading="lazy" onerror="${o.optional?"this.closest('figure').remove()":'this.remove()'}">`:''}</div>`;
   }
-  return `<figure class="shot fade-up">${body}<figcaption>${todo(o.cap)}</figcaption></figure>`;
+  return `<figure class="shot">${body}<figcaption>${todo(o.cap)}</figcaption></figure>`;
 }
 function renderCase(c0){
   const i=CASES.indexOf(c0), next=loc(CASES[(i+1)%CASES.length]), c=loc(c0);
@@ -1283,19 +1301,19 @@ function renderCase(c0){
       <div><dt>${ui('tools','Tools')}</dt><dd>${todo(c.tools)}</dd></div>
     </dl>
   </div>
-  <section><div class="wrap prose fade-up"><h2>${ui('challenge','Challenge')}</h2><p>${swatches(todo(c.challenge))}</p></div></section>
+  <section><div class="wrap prose"><h2>${ui('challenge','Challenge')}</h2><p>${swatches(todo(c.challenge))}</p></div></section>
   <section class="band"><div class="wrap">
-    <div class="prose fade-up"><h2>${ui('solution','Solution')}</h2><p>${swatches(todo(c.solution))}</p></div>
+    <div class="prose"><h2>${ui('solution','Solution')}</h2><p>${swatches(todo(c.solution))}</p></div>
     <div class="shots">${c.shots.map(shotHTML).join('')}</div>
 
   </div></section>
-  <section><div class="wrap prose fade-up"><h2>${ui('process','Process')}</h2><ul>${c.process.map(p=>`<li>${todo(p)}</li>`).join('')}</ul></div></section>
-  <section class="band"><div class="wrap prose fade-up"><h2>${ui('result','Result')}</h2><p>${todo(c.result)}</p></div></section>
+  <section><div class="wrap prose"><h2>${ui('process','Process')}</h2><ul>${c.process.map(p=>`<li>${todo(p)}</li>`).join('')}</ul></div></section>
+  <section class="band"><div class="wrap prose"><h2>${ui('result','Result')}</h2><p>${todo(c.result)}</p></div></section>
   <a class="next" href="#${next.id}"><small>${ui('next','Next project')}</small><span>${next.name} →</span></a>`;
-  observeFade(document.getElementById('page-case'));
 }
 
 // Router (hash)
+const HOME_TITLE=document.title;
 const ROUTES=['home','work','about'];
 function isRoute(h){return ROUTES.includes(h)||CASES.some(x=>x.id===h);}
 let CUR='home';
@@ -1309,7 +1327,7 @@ function show(h, keepScroll){
     const on = a.dataset.nav===page || (page==='case'&&a.dataset.nav==='work');
     on ? a.setAttribute('aria-current','page') : a.removeAttribute('aria-current');
   });
-  document.title = (c?loc(c).name+' — ':page==='work'?ui('work','Work')+' — ':page==='about'?ui('about','About')+' — ':'')+ui('site','Inna Romashova — Portfolio');
+  document.title = (page==='home'&&!c&&LANG==='en') ? HOME_TITLE : (c?loc(c).name+' — ':page==='work'?ui('work','Work')+' — ':page==='about'?ui('about','About')+' — ':'')+ui('site','Inna Romashova — Portfolio');
   if(keepScroll) return;
   window.scrollTo(0,0);
   try{ document.querySelector('.nav').scrollIntoView({block:'start'}); }catch(e){}
@@ -1341,7 +1359,6 @@ function applyLang(){
 document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>{
   LANG=b.dataset.lang; try{ localStorage.setItem('lang',LANG); }catch(e){}
   applyLang(); show(CUR,true);
-  document.querySelectorAll('.tile.fade-up,#page-case .fade-up').forEach(t=>t.classList.add('in','skip'));
 }));
 applyLang();
 observeFade();
